@@ -68,15 +68,14 @@ public class BallDemo
        int ballsMin = 5 ;
        int ballsMax = 30 ;
        Random rand = new Random();
+       
        // determine difference between max and min and 
        // add 1 to compensate for the 0 (inclusive) then add min to 
        // compensate for the starting point. 
        //   Note: Will never go past 30 in this example because 
        //   max-min removes the extra head room
-       int randBalls = rand.nextInt(ballsMax-ballsMin+1)+ballsMin; 
-       
-
-       
+       int howManyBalls = rand.nextInt(ballsMax-ballsMin+1)+ballsMin; 
+       //System.out.println(howManyBalls);
        
        myCanvas.setVisible(true);
 
@@ -87,7 +86,20 @@ public class BallDemo
         myCanvas.drawLine(leftBox, 50, leftBox, 400);
         myCanvas.drawLine(rightBox, 50, rightBox, 400);
         
-        System.out.println(randBalls);
+       while(howManyBalls != 0){
+          myCanvas.wait(50);           // small delay
+
+          int xPos = rand.nextInt(400)+50;
+          BoxBall ball = new BoxBall(xPos, 50, 16, Color.BLUE, bottomBox, myCanvas,howManyBalls);
+          ball.draw();
+          //ball.move();
+          // stop once ball has travelled a certain distance on x axis
+          // if(ball.getXPosition() >= 550) {
+                // howManyBalls--;
+          // }
+          howManyBalls--;
+        }        
+        
 
     }
 }

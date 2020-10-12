@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.Random;
 /**
  * Write a description of class BoxBall here.
  * Creates a box and balls that bounce within the box
@@ -21,6 +22,8 @@ public class BoxBall
     private final int groundPosition;      // y position of ground
     private Canvas canvas;
     private int ySpeed = 1;                // initial downward speed
+    private int balls;
+    private Random rand;
 
     /**
      * Constructor for objects of class BouncingBall
@@ -33,7 +36,7 @@ public class BoxBall
      * @param drawingCanvas  the canvas to draw this ball on
      */
     public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor,
-                        int groundPos, Canvas drawingCanvas)
+                        int groundPos, Canvas drawingCanvas, int howManyBalls)
     {
         xPosition = xPos;
         yPosition = yPos;
@@ -41,6 +44,8 @@ public class BoxBall
         diameter = ballDiameter;
         groundPosition = groundPos;
         canvas = drawingCanvas;
+        balls = howManyBalls;
+        
     }
 
 
@@ -49,8 +54,11 @@ public class BoxBall
      **/
     public void draw()
     {
-        canvas.setForegroundColor(color);
-        canvas.fillCircle(xPosition, yPosition, diameter);
+        while(balls!=0){
+            canvas.setForegroundColor(color);
+            canvas.fillCircle(xPosition, yPosition, diameter);
+            balls--;
+        }
     }
 
     /**
