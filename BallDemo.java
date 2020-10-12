@@ -1,16 +1,18 @@
 import java.awt.Color;
+import java.util.Random;
 
 /**
  * Class BallDemo - a short demonstration showing animation with the 
  * Canvas class. 
  *
- * @author Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author Erick Rubio
+ * @version 2020.10.11
  */
 
 public class BallDemo   
 {
     private Canvas myCanvas;
+    private Random rand;
 
     /**
      * Create a BallDemo object. Creates a fresh canvas and makes it visible.
@@ -50,5 +52,42 @@ public class BallDemo
                 finished = true;
             }
         }
+    }
+    /**
+     * This method draws a rectangle (the box) on screen and between five 
+     * and thirty balls that move inside the box.
+       */
+    public void boxBounce(){
+       // Set Box sides
+       int bottomBox = 400;   
+       int topBox = 50;
+       int leftBox = 50;
+       int rightBox = 550;
+       
+       // Make a random amount of balls
+       int ballsMin = 5 ;
+       int ballsMax = 30 ;
+       Random rand = new Random();
+       // determine difference between max and min and 
+       // add 1 to compensate for the 0 (inclusive) then add min to 
+       // compensate for the starting point. 
+       //   Note: Will never go past 30 in this example because 
+       //   max-min removes the extra head room
+       int randBalls = rand.nextInt(ballsMax-ballsMin+1)+ballsMin; 
+       
+
+       
+       
+       myCanvas.setVisible(true);
+
+        // draw the box
+        myCanvas.setForegroundColor(Color.BLACK);
+        myCanvas.drawLine(50, bottomBox, 550, bottomBox);
+        myCanvas.drawLine(50, topBox, 550, topBox);
+        myCanvas.drawLine(leftBox, 50, leftBox, 400);
+        myCanvas.drawLine(rightBox, 50, rightBox, 400);
+        
+        System.out.println(randBalls);
+
     }
 }
