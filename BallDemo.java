@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.HashMap; // import the HashMap class
 
 /**
  * Class BallDemo - a short demonstration showing animation with the 
@@ -13,13 +15,16 @@ public class BallDemo
 {
     private Canvas myCanvas;
     private Random rand;
-
+    //HashSet<BoxBall> ballSet;
+    private ArrayList<BoxBall> ballSet;
     /**
      * Create a BallDemo object. Creates a fresh canvas and makes it visible.
      */
     public BallDemo()
     {
         myCanvas = new Canvas("Ball Demo", 600, 500);
+        rand = new Random();
+        ballSet = new ArrayList<>();
     }
 
     /**
@@ -67,7 +72,7 @@ public class BallDemo
        // Make a random amount of balls
        int ballsMin = 5 ;
        int ballsMax = 30 ;
-       Random rand = new Random();
+       //Random rand = new Random();
        
        // determine difference between max and min and 
        // add 1 to compensate for the 0 (inclusive) then add min to 
@@ -80,18 +85,20 @@ public class BallDemo
        myCanvas.setVisible(true);
 
         // draw the box
-        myCanvas.setForegroundColor(Color.BLACK);
-        myCanvas.drawLine(50, bottomBox, 550, bottomBox);
-        myCanvas.drawLine(50, topBox, 550, topBox);
-        myCanvas.drawLine(leftBox, 50, leftBox, 400);
-        myCanvas.drawLine(rightBox, 50, rightBox, 400);
-        
+       myCanvas.setForegroundColor(Color.BLACK);
+       myCanvas.drawLine(50, bottomBox, 550, bottomBox);
+       myCanvas.drawLine(50, topBox, 550, topBox);
+       myCanvas.drawLine(leftBox, 50, leftBox, 400);
+       myCanvas.drawLine(rightBox, 50, rightBox, 400);
+       
+       
        while(howManyBalls != 0){
-          myCanvas.wait(50);           // small delay
+          //myCanvas.wait(50);           // small delay
 
           int xPos = rand.nextInt(400)+50;
           BoxBall ball = new BoxBall(xPos, 50, 16, Color.BLUE, bottomBox, myCanvas,howManyBalls);
-          ball.draw();
+          ballSet.add(ball);
+          //ball.draw();
           //ball.move();
           // stop once ball has travelled a certain distance on x axis
           // if(ball.getXPosition() >= 550) {
@@ -99,7 +106,13 @@ public class BallDemo
           // }
           howManyBalls--;
         }        
+       
+       for(BoxBall ball : ballSet){
+          myCanvas.wait(50);           // small delay
+          BoxBall ballDrop = ball; 
+          ball.draw();
+          //ball.move();          
+       }
         
-
     }
 }
