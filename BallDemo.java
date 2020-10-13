@@ -91,7 +91,7 @@ public class BallDemo
        myCanvas.drawLine(leftBox, 50, leftBox, 400);
        myCanvas.drawLine(rightBox, 50, rightBox, 400);
        
-       
+       //load balls
        while(howManyBalls != 0){
           //added cap of 254 so 255,255,255 (white) never occurs
           Color circleColor = new Color(rand.nextInt(254), rand.nextInt(256),rand.nextInt(256));
@@ -100,28 +100,41 @@ public class BallDemo
           int yPos = rand.nextInt(330)+50;
           BoxBall ball = new BoxBall(xPos, yPos, 16, circleColor, bottomBox, myCanvas,howManyBalls);
           ballSet.add(ball);
-          //ball.draw();
-          //ball.move();
-          // stop once ball has travelled a certain distance on x axis
-          // if(ball.getXPosition() >= 550) {
-                // howManyBalls--;
-          // }
+
           howManyBalls--;
         }        
        
-       // int count = 0; 
-       // while(count <= ballSet.size()){
-          // myCanvas.wait(50);           // small delay
-           
-        
-          // count++;
-        // }
+       //draw balls
        for(BoxBall ball : ballSet){
           myCanvas.wait(50);           // small delay
           BoxBall ballDrop = ball; 
           ball.draw();
-          //ball.move();          
+          //ball.move();
+
+       // make them bounce works but conflicts with the population. Needs to be reworked.
+       // boolean finished =  false; 
+       // while(!finished){
+          // ballDrop.move();
+        // // stop once ball has travelled a certain distance on x axis
+        // if(ballDrop.getXPosition() >= 400) {
+            // finished = true;
+        // }                
        }
+          
+       //make balls in ArrayList move... issues with white overlap, it seems to
+       //work but not right.
+       int count = 0; 
+       // // make them bounce
+       boolean finished =  false; 
+       while(!finished){
+          BoxBall b = ballSet.get(count);
+          b.move();
+         // stop once ball has travelled a certain distance on x axis
+         if(b.getXPosition() >= 500) {
+             finished = true;
+             count++;
+         }        
+        }
        //System.out.println(BoxBall.getRandomColor());
     }
     

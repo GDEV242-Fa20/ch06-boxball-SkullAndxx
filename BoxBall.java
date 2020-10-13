@@ -54,11 +54,11 @@ public class BoxBall
      **/
     public void draw()
     {
-        while(balls!=0){
+        
             canvas.setForegroundColor(color);
             canvas.fillCircle(xPosition, yPosition, diameter);
-            balls--;
-        }
+            
+        
     }
 
     /**
@@ -107,6 +107,7 @@ public class BoxBall
     {
         return yPosition;
     }
+    
     // /**
      // * Random Color Array
        // */
