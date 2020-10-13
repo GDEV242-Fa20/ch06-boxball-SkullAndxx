@@ -96,8 +96,9 @@ public class BallDemo
           //added cap of 254 so 255,255,255 (white) never occurs
           Color circleColor = new Color(rand.nextInt(254), rand.nextInt(256),rand.nextInt(256));
           
-          int xPos = rand.nextInt(400)+50;
-          BoxBall ball = new BoxBall(xPos, 50, 16, circleColor, bottomBox, myCanvas,howManyBalls);
+          int xPos = rand.nextInt(450)+50;
+          int yPos = rand.nextInt(330)+50;
+          BoxBall ball = new BoxBall(xPos, yPos, 16, circleColor, bottomBox, myCanvas,howManyBalls);
           ballSet.add(ball);
           //ball.draw();
           //ball.move();
