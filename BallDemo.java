@@ -93,10 +93,11 @@ public class BallDemo
        
        
        while(howManyBalls != 0){
-          //myCanvas.wait(50);           // small delay
-
+          //added cap of 254 so 255,255,255 (white) never occurs
+          Color circleColor = new Color(rand.nextInt(254), rand.nextInt(256),rand.nextInt(256));
+          
           int xPos = rand.nextInt(400)+50;
-          BoxBall ball = new BoxBall(xPos, 50, 16, Color.BLUE, bottomBox, myCanvas,howManyBalls);
+          BoxBall ball = new BoxBall(xPos, 50, 16, circleColor, bottomBox, myCanvas,howManyBalls);
           ballSet.add(ball);
           //ball.draw();
           //ball.move();
@@ -107,12 +108,20 @@ public class BallDemo
           howManyBalls--;
         }        
        
+       // int count = 0; 
+       // while(count <= ballSet.size()){
+          // myCanvas.wait(50);           // small delay
+           
+        
+          // count++;
+        // }
        for(BoxBall ball : ballSet){
           myCanvas.wait(50);           // small delay
           BoxBall ballDrop = ball; 
           ball.draw();
           //ball.move();          
        }
-        
+       //System.out.println(BoxBall.getRandomColor());
     }
+    
 }

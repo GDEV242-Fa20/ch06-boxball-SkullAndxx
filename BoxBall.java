@@ -107,4 +107,15 @@ public class BoxBall
     {
         return yPosition;
     }
+    // /**
+     // * Random Color Array
+       // */
+    // public Color getRandomColor(){
+        
+        // Color circleColor = new Color(rand.nextInt(256), rand.nextInt(256),rand.nextInt(256));
+        
+        
+        
+        // return circleColor;
+    // }
 }
